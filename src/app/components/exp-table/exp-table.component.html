@@ -1,0 +1,13 @@
+<div *ngIf="expenseList.length > 0">
+  <h2 class="expenseTable">Expenses</h2>
+  <table>
+    <th>Description</th>
+    <th>Category</th>
+    <th>Amount</th>
+    <tr *ngFor="let e of expenseList">
+      <td>{{ e.description }}</td>
+      <td>{{ e.category }}</td>
+      <td class="amount">{{ e.amount | currency }}</td>
+    </tr>
+  </table>
+</div>

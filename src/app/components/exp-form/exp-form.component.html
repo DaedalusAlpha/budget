@@ -1,0 +1,66 @@
+<div class="box">
+  <form (ngSubmit)="submitForm(); form.resetForm()" #form="ngForm">
+    <div class="mb-3">
+      <label for="amount">Amount:</label
+      ><input
+        type="number"
+        number
+        required
+        id="amount"
+        name="amount"
+        min="1"
+        [(ngModel)]="expense.amount"
+        #amount="ngModel"
+      />
+      <div
+        *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="amount.errors?.['required']">Amount is required.</div>
+        <div *ngIf="amount.errors?.['min']">Amount must be positive.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="desc">Description:</label>
+      <input
+        type="text"
+        required
+        id="desc"
+        name="desc"
+        [(ngModel)]="expense.description"
+        #desc="ngModel"
+      />
+      <div
+        *ngIf="desc.invalid && (desc.dirty || desc.touched)"
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="desc.errors?.['required']">Description is required.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="cat">Category:</label>
+      <select
+        type="text"
+        required
+        id="cat"
+        name="cat"
+        [(ngModel)]="expense.category"
+        #cat="ngModel"
+      >
+        <option value="">Select one...</option>
+        <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+      </select>
+      <div
+        *ngIf="cat.invalid && (cat.dirty || cat.touched)"
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="cat.errors?.['required']">Category is required.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+        Add Expense
+      </button>
+    </div>
+  </form>
+</div>

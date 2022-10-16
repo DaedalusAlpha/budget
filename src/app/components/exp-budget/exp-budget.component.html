@@ -1,0 +1,30 @@
+<div class="box">
+  <form (ngSubmit)="submitForm(); form.resetForm()" #form="ngForm">
+    <div class="mb-3">
+      <label for="bud">Budget:</label
+      ><input
+        type="number"
+        number
+        required
+        placeholder="Enter a new budget"
+        id="bud"
+        name="bud"
+        min="0"
+        [(ngModel)]="newBudget"
+        #bud="ngModel"
+      />
+      <div
+        *ngIf="bud.invalid && (bud.dirty || bud.touched)"
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="bud.errors?.['required']">A valid budget is required.</div>
+        <div *ngIf="bud.errors?.['min']">Budget must be greater than zero.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+        Set Budget
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,19 @@
+<div class="box">
+  <h2>Total Expenses: {{ totalExpensesDisplay | currency }}</h2>
+  <h2>Total Budget: {{ totalBudgetDisplay | currency }}</h2>
+
+  <!-- TODO: Add progress bar with ngIf that changes to failure if you go over budget. -->
+  <ngb-progressbar
+    *ngIf="totalExpensesDisplay <= totalBudgetDisplay"
+    type="success"
+    [value]="(totalExpensesDisplay / totalBudgetDisplay) * 100"
+  ></ngb-progressbar>
+  <ngb-progressbar
+    *ngIf="totalExpensesDisplay > totalBudgetDisplay"
+    type="danger"
+    [value]="100"
+  ></ngb-progressbar>
+  <p class="budgetTotal" *ngFor="let c of categories">
+    {{ c }}: {{ sumCategory(c) | currency }}
+  </p>
+</div>
