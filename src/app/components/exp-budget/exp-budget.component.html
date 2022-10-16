@@ -1,5 +1,5 @@
 <div class="box">
-  <form (ngSubmit)="submitForm(); form.resetForm()" #form="ngForm">
+  <form (ngSubmit)="submitForm()" #form="ngForm">
     <div class="mb-3">
       <label for="bud">Budget:</label
       ><input
@@ -24,6 +24,9 @@
     <div class="mb-3">
       <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
         Set Budget
+      </button>
+      <button class="btn btn-secondary" (click)="getBudget()">
+        Reset Budget
       </button>
     </div>
   </form>
